@@ -16,13 +16,13 @@ public class EndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if player clicks space, reload the scene
+        //if the game is over and player clicks space, restart to level 1
         if (tilt.gameOver == true) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             }
         }
-        //if player clicks r, reload the scene
+        //during gameplayer (gameover == false), if player clicks r, reload the current scene
         if(tilt.gameOver == false){
             if (Input.GetKeyDown(KeyCode.R)) {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
