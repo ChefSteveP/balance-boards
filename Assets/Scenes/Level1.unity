@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 464005524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a03756a79c55fa4c8545079167f4c9d, type: 3}
+  m_Script: {fileID: 11500000, guid: b01c6c8a9a720416a8346e3f2953b98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 7700494097590598091, guid: 40350e7d6f41fd34786d686ea2724ebb, type: 3}
@@ -4958,7 +4958,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1420760260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7cf08bd3047d684a9ab35b78c0d3021, type: 3}
+  m_Script: {fileID: 11500000, guid: c2af1cbfb582a9e65b86e85cd23af6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 10
@@ -4972,7 +4972,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1420760260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a802b65f52e7d4789380572767a1e0, type: 3}
+  m_Script: {fileID: 11500000, guid: d10a261960c8f25b794e2150adee02c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1458149495
@@ -6219,7 +6219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1857278504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7cf08bd3047d684a9ab35b78c0d3021, type: 3}
+  m_Script: {fileID: 11500000, guid: c2af1cbfb582a9e65b86e85cd23af6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 10
