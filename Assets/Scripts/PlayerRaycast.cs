@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,8 +9,10 @@ public class PlayerRaycast : MonoBehaviour
     public Transform target;
     public float lineWidth = 0.01f;
 
+    public TextMeshProUGUI displayText;
+
     private Transform player;
-    private Renderer renderer;
+    private Renderer playerRenderer;
     private LineRenderer line;
 
 
@@ -20,53 +23,71 @@ public class PlayerRaycast : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Transform>();
-        renderer = GetComponent<Renderer>();
-        materialDefault = renderer.material;
+        playerRenderer = GetComponent<Renderer>();
+        materialDefault = playerRenderer.material;
 
         line = gameObject.AddComponent(typeof(LineRenderer)) as LineRenderer;
-        SetLineColor(Color.red);
         line.startWidth = lineWidth;
         line.endWidth = lineWidth;
+        line.enabled = false;
     }
 
-
-    private void SetLineColor(Color color)
+    private void SetDisplayText(float distance, bool visible = false)
     {
-        line.startColor = color;
-        line.endColor = color;
+        if (displayText == null)
+        {
+            return;
+        }
+
+        string message = "Distance: " + distance.ToString("0.00") + " m";
+        displayText.text = message;
+        if (visible)
+        {
+            displayText.color = Color.green;
+        }
+        else
+        {
+            displayText.color = Color.white;
+        }
     }
 
     private void SetBallDefault()
     {
-        renderer.material = materialDefault;
+        playerRenderer.material = materialDefault;
     }
 
     private void SetBallNew()
     {
-        renderer.material = materialNew;
+        playerRenderer.material = materialNew;
     }
 
     private void Update()
     {
 
-        float distance = 10.0f + Vector3.Distance(target.position, player.position);
+        float distance = Vector3.Distance(target.position, player.position);
+        float maxDistance = distance + 10.0f;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, (target.position - transform.position).normalized, out hit, distance))
+        if (Physics.Raycast(transform.position, (target.position - transform.position).normalized, out hit, maxDistance))
         {
             if (hit.collider.gameObject == target.gameObject)
             {
-                Debug.LogWarning("CAN SEE");
+                line.enabled = true;
                 SetBallNew();
+                SetDisplayText(distance, true);
             }
             else
             {
+                line.enabled = false;
                 SetBallDefault();
+                SetDisplayText(distance, false);
             }
         }
         else
         {
+            line.enabled = false;
             SetBallDefault();
+            SetDisplayText(distance, false);
         }
 
         line.SetPosition(0, transform.position);
@@ -76,7 +97,7 @@ public class PlayerRaycast : MonoBehaviour
         }
         else
         {
-            line.SetPosition(1, transform.position + (target.position - transform.position).normalized * distance);
+            line.SetPosition(1, transform.position + (target.position - transform.position).normalized * maxDistance);
         }
     }
 }
