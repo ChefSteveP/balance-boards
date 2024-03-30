@@ -1432,6 +1432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 186073012}
   lineWidth: 0.01
+  materialNew: {fileID: 2100000, guid: 8f7ad6094a1fef9d189106dd4b832899, type: 2}
 --- !u!1 &469059280
 GameObject:
   m_ObjectHideFlags: 0

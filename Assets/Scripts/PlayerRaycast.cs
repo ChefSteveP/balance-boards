@@ -9,12 +9,20 @@ public class PlayerRaycast : MonoBehaviour
     public float lineWidth = 0.01f;
 
     private Transform player;
+    private Renderer renderer;
     private LineRenderer line;
+
+
+    private Material materialDefault;
+    public Material materialNew;
 
 
     private void Start()
     {
         player = GetComponent<Transform>();
+        renderer = GetComponent<Renderer>();
+        materialDefault = renderer.material;
+
         line = gameObject.AddComponent(typeof(LineRenderer)) as LineRenderer;
         SetLineColor(Color.red);
         line.startWidth = lineWidth;
@@ -27,6 +35,17 @@ public class PlayerRaycast : MonoBehaviour
         line.startColor = color;
         line.endColor = color;
     }
+
+    private void SetBallDefault()
+    {
+        renderer.material = materialDefault;
+    }
+
+    private void SetBallNew()
+    {
+        renderer.material = materialNew;
+    }
+
     private void Update()
     {
 
@@ -38,16 +57,16 @@ public class PlayerRaycast : MonoBehaviour
             if (hit.collider.gameObject == target.gameObject)
             {
                 Debug.LogWarning("CAN SEE");
-                SetLineColor(Color.green);
+                SetBallNew();
             }
             else
             {
-                SetLineColor(Color.red);
+                SetBallDefault();
             }
         }
         else
         {
-            SetLineColor(Color.red);
+            SetBallDefault();
         }
 
         line.SetPosition(0, transform.position);
