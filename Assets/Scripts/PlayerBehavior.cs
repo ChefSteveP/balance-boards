@@ -13,34 +13,37 @@ public class PlayerBehavior : MonoBehaviour
     
         //if the player hits an obstacle
         if (other.gameObject.CompareTag("Obstacle")) {
-
-
             StartCoroutine(PlayerExplosion());
 
             //turn off tilt control
             Tilt.inPlay = false;
-
-            //hide the player and turn off the collider while the explosion is happening
-            //This stops the player from being able to make further collisions
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
-            gameObject.GetComponent<SphereCollider>().enabled = false;
         }
         if (other.gameObject.CompareTag("WinningArea")) {
             //delete the player
-            Destroy(gameObject);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<SphereCollider>().enabled = false;
 
             //load next level
-             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
     //once ball drops onto the board, the game is in play and player has tilt control
     private void OnCollisionEnter(Collision other) {
         Tilt.inPlay = true;
+
+        if(other.gameObject.CompareTag("Enemy")) {
+            StartCoroutine(PlayerExplosion());
+        }
     }
 
     // Player explosoion coroutine
     public IEnumerator PlayerExplosion() {
+        //hide the player and turn off the collider while the explosion is happening
+        //This stops the player from being able to make further collisions
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<SphereCollider>().enabled = false;
+
         //particle effect
         Instantiate(explosion, transform.position, Quaternion.identity);
 
